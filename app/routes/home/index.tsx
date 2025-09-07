@@ -1,3 +1,4 @@
+import AboutPreview from "~/components/AboutPreview";
 import FeaturedProjects from "~/components/FeaturedProjects";
 import type { Project } from "~/types";
 import type { Route } from "./+types/index";
@@ -25,6 +26,7 @@ function HomePage({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <FeaturedProjects projects={projects} count={1} />
+      <AboutPreview />
     </>
   );
 }
