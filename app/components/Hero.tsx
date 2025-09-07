@@ -1,9 +1,14 @@
 import { Link } from "react-router";
 
+type HeroProps = {
+  name?: string;
+  text?: string;
+};
+
 function Hero({
   name = "[NAME]",
   text = "I build friendly web experiences and help others become confident modern developers.",
-}) {
+}: HeroProps) {
   return (
     <header className="bg-gray-900 px-4 py-20 text-center text-white transition-colors duration-300">
       <h2 className="mb-4 text-4xl font-bold">Hey, I'm {name} 🙋‍♂️</h2>
