@@ -1,8 +1,16 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Pagination from "~/components/Pagination";
 import ProjectCard from "~/components/ProjectCard";
 import type { Project } from "~/types";
 import type { Route } from "./+types/index";
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "The Friendly Dev | Projects" },
+    { name: "description", content: "My website projects" },
+  ];
+}
 
 export async function loader({
   request,
@@ -37,7 +45,7 @@ function ProjectsPage({ loaderData }: Route.ComponentProps) {
   // Calculate totalPages
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
-  // Get curent page's projects
+  // Get current page's projects
   const indexOfLast = currentPage * projectsPerPage;
   const indexOfFirst = indexOfLast - projectsPerPage;
 
@@ -60,11 +68,15 @@ function ProjectsPage({ loaderData }: Route.ComponentProps) {
           </button>
         ))}
       </div>
-      <div className="sm: grid grid-cols-2 gap-6">
-        {currentProjects.map((project) => (
-          <ProjectCard project={project} key={project.id} />
-        ))}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div layout className="sm: grid grid-cols-2 gap-6">
+          {currentProjects.map((project) => (
+            <motion.div key={project.id} layout>
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
       {
         <Pagination
           totalPages={totalPages}

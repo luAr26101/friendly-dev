@@ -14,7 +14,7 @@ function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <NavLink
           to="/"
-          className="flex items-center gap-2 text-lg font-bold text-blue-300 hover:text-red-500"
+          className="flex items-center gap-2 text-lg font-bold text-blue-300 hover:text-blue-500"
         >
           <FaLaptopCode className="text-xl text-blue-400" />
           <span>The Friendly Developer</span>
