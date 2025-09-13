@@ -1,53 +1,57 @@
-import { Form } from "react-router";
+// import { Form } from "react-router";
 import type { Route } from "./+types";
 
-export async function action({ request }: Route.ActionArgs) {
-  const formData = await request.formData();
-  const fullName = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const subject = formData.get("subject") as string;
-  const message = formData.get("message") as string;
+// export async function action({ request }: Route.ActionArgs) {
+//   const formData = await request.formData();
+//   const fullName = formData.get("name") as string;
+//   const email = formData.get("email") as string;
+//   const subject = formData.get("subject") as string;
+//   const message = formData.get("message") as string;
 
-  const errors: Record<string, string> = {};
+//   const errors: Record<string, string> = {};
 
-  if (!fullName) errors.name = "Full name is required.";
-  if (!email) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = "Invalid email format.";
-  }
+//   if (!fullName) errors.name = "Full name is required.";
+//   if (!email) {
+//     errors.email = "Email is required";
+//   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+//     errors.email = "Invalid email format.";
+//   }
 
-  if (!subject) errors.subject = "Subject is required.";
-  if (!message) errors.message = "Message is required.";
+//   if (!subject) errors.subject = "Subject is required.";
+//   if (!message) errors.message = "Message is required.";
 
-  if (Object.keys(errors).length > 0) {
-    return { errors };
-  }
+//   if (Object.keys(errors).length > 0) {
+//     return { errors };
+//   }
 
-  const data = {
-    name: fullName,
-    email,
-    subject,
-    message,
-  };
+//   const data = {
+//     name: fullName,
+//     email,
+//     subject,
+//     message,
+//   };
 
-  return { message: "Form submitted successfully.", data };
-}
+//   return { message: "Form submitted successfully.", data };
+// }
 
 function ContactPage({ actionData }: Route.ComponentProps) {
-  const errors = actionData?.errors || {};
+  // const errors = actionData?.errors || {};
 
   return (
     <div className="mx-auto mt-12 max-w-3xl bg-gray-900 px-6 py-8">
       <h2 className="mb-8 text-center text-3xl font-bold text-white">
         📫Contact me
       </h2>
-      {actionData?.message ? (
+      {/* {actionData?.message ? (
         <p className="mb-6 rounded-lg border border-green-500 bg-green-700 text-center text-green-100 shadow-md">
           {actionData.message}
         </p>
-      ) : null}
-      <Form method="POST" className="space-y-6">
+      ) : null} */}
+      <form
+        action="https://formspree.io/f/mpwjnkaw"
+        method="POST"
+        className="space-y-6"
+      >
         <div>
           <label
             htmlFor="name"
@@ -61,9 +65,9 @@ function ContactPage({ actionData }: Route.ComponentProps) {
             id="name"
             name="name"
           />
-          {errors.name && (
+          {/* {errors.name && (
             <p className="mt-1 text-sm text-red-400">{errors.name}</p>
-          )}
+          )} */}
         </div>
         <div>
           <label
@@ -78,9 +82,9 @@ function ContactPage({ actionData }: Route.ComponentProps) {
             id="email"
             name="email"
           />
-          {errors.email && (
+          {/* {errors.email && (
             <p className="mt-1 text-sm text-red-400">{errors.email}</p>
-          )}
+          )} */}
         </div>
         <div>
           <label
@@ -95,9 +99,9 @@ function ContactPage({ actionData }: Route.ComponentProps) {
             id="subject"
             name="subject"
           />
-          {errors.subject && (
+          {/* {errors.subject && (
             <p className="mt-1 text-sm text-red-400">{errors.subject}</p>
-          )}
+          )} */}
         </div>
         <div>
           <label
@@ -111,14 +115,14 @@ function ContactPage({ actionData }: Route.ComponentProps) {
             id="message"
             name="message"
           />
-          {errors.message && (
+          {/* {errors.message && (
             <p className="mt-1 text-sm text-red-400">{errors.message}</p>
-          )}
+          )} */}
         </div>
         <button className="w-full cursor-pointer rounded-lg bg-blue-600 py-2 text-white transition-colors hover:bg-blue-700">
           Send Message
         </button>
-      </Form>
+      </form>
     </div>
   );
 }
