@@ -1,7 +1,7 @@
 import AboutPreview from "~/components/AboutPreview";
 import FeaturedProjects from "~/components/FeaturedProjects";
 import LatestPosts from "~/components/LatestPosts";
-import type { PostMeta, Project, StrapiProject, StrapiResponse } from "~/types";
+import type { Post, Project, StrapiProject, StrapiResponse } from "~/types";
 import type { Route } from "./+types/index";
 
 export function meta({}: Route.MetaArgs) {
@@ -13,7 +13,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({
   request,
-}: Route.LoaderArgs): Promise<{ projects: Project[]; posts: PostMeta[] }> {
+}: Route.LoaderArgs): Promise<{ projects: Project[]; posts: Post[] }> {
   const url = new URL(request.url);
   const [projectRes, postsRes] = await Promise.all([
     fetch(
