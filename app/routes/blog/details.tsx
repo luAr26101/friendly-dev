@@ -5,7 +5,6 @@ import type { Route } from "./+types/details";
 
 export async function loader({ request, params }: Route.LoaderArgs) {
   const { slug } = params;
-  console.log(slug);
 
   // const url = new URL("/posts-meta.json", request.url);
   // const res = await fetch(url.href);
